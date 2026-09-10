@@ -4,7 +4,7 @@ import curses
 from console_explorer import browse_for_file
 
 
-def home_window(stdscr) -> None:
+def home_window(stdscr) -> str:
     stdscr.clear()
     stdscr.addstr("Welcome to qwerty!")
     stdscr.addstr("\n\nWould you like to open an existing file?")
@@ -24,7 +24,7 @@ def home_window(stdscr) -> None:
         else:
             file_path = None
             break
-
+    return file_path
 
 def choose_file_window(stdscr):
     return browse_for_file(existence_required=True)

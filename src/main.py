@@ -4,7 +4,7 @@ import curses
 from windows import home_window
 
 def main(stdscr) -> None:
-    home_window(stdscr)
+    file_path = home_window(stdscr)
 
 
 
