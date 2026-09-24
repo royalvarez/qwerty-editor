@@ -22,7 +22,7 @@ def file_selector(stdscr) -> str:
             # temporarily return to shell-terminal
             curses.def_prog_mode()
             curses.reset_shell_mode()
-            file_path = choose_file_window(stdscr)
+            file_path = explore_files(stdscr)
             curses.reset_prog_mode()
             break
         else:
@@ -31,5 +31,5 @@ def file_selector(stdscr) -> str:
     return file_path
 
 
-def choose_file_window(stdscr):
+def explore_files(stdscr):
     return browse_for_file(existence_required=True)
