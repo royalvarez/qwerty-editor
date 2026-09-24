@@ -4,12 +4,18 @@ import curses
 
 def editor(stdscr, file_path: str | None) -> None:
     if file_path is None:
-        pass
+        file_path = "Untitled.py"
+        buffer = []
     else:
-        pass
-    
+        with open(file_path, 'r') as file:
+            text = file.read()
+            buffer = text.split("\n")
+
     while True:
         stdscr.erase()
+
+        for row, line in enumerate(buffer):
+            stdscr.addstr(row, 0, line)
 
         key = stdscr.getkey()
 
