@@ -1,12 +1,12 @@
 
 import curses
 
-from windows import home_window
+from windows import welcome_screen, file_selector
+
 
 def main(stdscr) -> None:
-    file_path = home_window(stdscr)
-
-
+    welcome_screen(stdscr)
+    file_path = file_selector(stdscr)
 
 
 if __name__ == "__main__":
