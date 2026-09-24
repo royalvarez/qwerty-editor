@@ -1,7 +1,7 @@
 
 import curses
 
-from windows import welcome_screen, file_selector
+from screen import welcome_screen, file_selector
 
 
 def main(stdscr) -> None:
