@@ -14,7 +14,7 @@ def home_window(stdscr) -> str:
     while True:
         key = stdscr.getkey()
 
-        if key == 'O' or 'o':
+        if key in ('O', 'o'):
             # temporarily return to shell-terminal
             curses.def_prog_mode()
             curses.reset_shell_mode()
