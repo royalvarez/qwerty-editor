@@ -3,6 +3,8 @@ import curses
 
 from window import Window
 
+from cursor import Cursor
+
 
 def editor(stdscr, file_path: str | None) -> None:
     if file_path is None:
@@ -14,12 +16,15 @@ def editor(stdscr, file_path: str | None) -> None:
                 buffer = text.split("\n")
 
     window = Window(curses.LINES - 1, curses.COLS)
+    cursor = Cursor(0, 0)
 
     while True:
         stdscr.erase()
 
         for row, line in enumerate(buffer[:window.num_rows]):
             stdscr.addstr(row, 0, line[:window.num_cols])
+
+        stdscr.move(cursor.row, cursor.col)
 
         key = stdscr.getkey()
 
