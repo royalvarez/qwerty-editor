@@ -30,6 +30,17 @@ def editor(stdscr, file_path: str | None) -> None:
 
         if key == "KEY_F(1)":
             break
+
+        elif key == "KEY_UP":
+            cursor.up()
+        elif key == "KEY_LEFT":
+            cursor.left()
+        elif key == "KEY_RIGHT":
+            if buffer != []:
+                cursor.right(buffer)
+        elif key == "KEY_DOWN":
+            cursor.down(buffer)
+
         else:
             if len(key) < 3 and ord(key) == 27:
                 raise SystemExit(0)
