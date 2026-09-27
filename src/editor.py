@@ -12,9 +12,7 @@ def editor(stdscr, file_path: str | None) -> None:
         buffer = []
     else:
             with open(file_path, 'r') as file:
-                text = file.read()
-                # buffer = file.readlines() remove, update to gitt later in separate commit
-                buffer = text.split("\n")
+                buffer = file.readlines()
 
     window = Window(curses.LINES - 1, curses.COLS)
     cursor = Cursor(0, 0)
