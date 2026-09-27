@@ -3,6 +3,8 @@ import curses
 
 from console_explorer import browse_for_file
 
+from os import system
+
 
 def welcome_screen(stdscr) -> None:
     stdscr.erase()
@@ -23,6 +25,7 @@ def file_selector(stdscr) -> str:
             curses.def_prog_mode()
             curses.reset_shell_mode()
             file_path = explore_files(stdscr)
+            system("clear||cls")
             curses.reset_prog_mode()
             break
         else:
