@@ -20,12 +20,18 @@ class Cursor:
         if self.row > 0:
             self.row -= 1
             self._col_clamp(buffer)
-    def left(self):
+    def left(self, buffer: str):
         if self.col > 0:
             self.col -= 1
+        elif self.col == 0 and self.row != 0:
+            self.up(buffer)
+            self._col = len(buffer[self.row]) - 1
     def right(self, buffer: str):
         if self.col < len(buffer[self.row]) - 1:
             self.col += 1
+        elif self.col == len(buffer[self.row]) - 1 and self.row != len(buffer) - 1:
+            self.down(buffer)
+            self._col = 0
     def down(self, buffer: str):
         if self.row < len(buffer) - 1:
             self.row += 1

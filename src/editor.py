@@ -34,7 +34,7 @@ def editor(stdscr, file_path: str | None) -> None:
         elif key == "KEY_UP":
             cursor.up(buffer)
         elif key == "KEY_LEFT":
-            cursor.left()
+            cursor.left(buffer)
         elif key == "KEY_RIGHT":
             if buffer != []:
                 cursor.right(buffer)
