@@ -13,6 +13,7 @@ def editor(stdscr, file_path: str | None) -> None:
     else:
             with open(file_path, 'r') as file:
                 text = file.read()
+                # buffer = file.readlines() remove, update to gitt later in separate commit
                 buffer = text.split("\n")
 
     window = Window(curses.LINES - 1, curses.COLS)
@@ -21,10 +22,10 @@ def editor(stdscr, file_path: str | None) -> None:
     while True:
         stdscr.erase()
 
-        for row, line in enumerate(buffer[:window.num_rows]):
+        for row, line in enumerate(buffer[window.row: window.row + window.num_rows]):
             stdscr.addstr(row, 0, line[:window.num_cols])
 
-        stdscr.move(cursor.row, cursor.col)
+        stdscr.move(*window.translate(cursor))
 
         key = stdscr.getkey()
 
@@ -33,13 +34,17 @@ def editor(stdscr, file_path: str | None) -> None:
 
         elif key == "KEY_UP":
             cursor.up(buffer)
+            window.scroll_up(cursor)
         elif key == "KEY_LEFT":
             cursor.left(buffer)
+            window.scroll_up(cursor)
         elif key == "KEY_RIGHT":
             if buffer != []:
                 cursor.right(buffer)
+                window.scroll_down(cursor, buffer)
         elif key == "KEY_DOWN":
             cursor.down(buffer)
+            window.scroll_down(cursor, buffer)
 
         else:
             if len(key) < 3 and ord(key) == 27:
