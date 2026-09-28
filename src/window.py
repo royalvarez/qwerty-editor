@@ -22,3 +22,12 @@ class Window:
     
     def translate(self, cursor: object):
         return (cursor.row - self.row, cursor.col - self.col)
+
+
+    def horizontal_scroll(self, cursor: object):
+        left_margin = 5
+        right_margin = 2
+        visible_cols_per_page = self.num_cols - left_margin - right_margin
+
+        current_cursor_page = cursor.col // visible_cols_per_page
+        self.col = max(current_cursor_page * visible_cols_per_page  - left_margin, 0)

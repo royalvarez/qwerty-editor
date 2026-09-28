@@ -21,7 +21,7 @@ def editor(stdscr, file_path: str | None) -> None:
         stdscr.erase()
 
         for row, line in enumerate(buffer[window.row: window.row + window.num_rows]):
-            stdscr.addstr(row, 0, line[:window.num_cols])
+            stdscr.addstr(row, 0, line)
 
         stdscr.move(*window.translate(cursor))
 
@@ -33,16 +33,20 @@ def editor(stdscr, file_path: str | None) -> None:
         elif key == "KEY_UP":
             cursor.up(buffer)
             window.scroll_up(cursor)
+            window.horizontal_scroll(cursor)
         elif key == "KEY_LEFT":
             cursor.left(buffer)
             window.scroll_up(cursor)
+            window.horizontal_scroll(cursor)
         elif key == "KEY_RIGHT":
             if buffer != []:
                 cursor.right(buffer)
                 window.scroll_down(cursor, buffer)
+                window.horizontal_scroll(cursor)
         elif key == "KEY_DOWN":
             cursor.down(buffer)
             window.scroll_down(cursor, buffer)
+            window.horizontal_scroll(cursor)
 
         else:
             if len(key) < 3 and ord(key) == 27:
