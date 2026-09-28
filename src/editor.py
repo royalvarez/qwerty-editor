@@ -14,7 +14,7 @@ def editor(stdscr, file_path: str | None) -> None:
             with open(file_path, 'r') as file:
                 buffer = file.readlines()
 
-    window = Window(curses.LINES - 1, curses.COLS)
+    window = Window(curses.LINES - 1, curses.COLS - 1)
     cursor = Cursor(0, 0)
 
     while True:
