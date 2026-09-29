@@ -9,7 +9,7 @@ class Window:
 
     @property
     def bottom(self):
-        # return the total visible lines of the window
+        # return the iindex of the last visible line of the window
         return self.row + (self.num_rows - 1)
 
     def scroll_up(self, cursor: object):
@@ -29,5 +29,5 @@ class Window:
         right_margin = 2
         visible_cols_per_page = self.num_cols - left_margin - right_margin
 
-        current_cursor_page = cursor.col // visible_cols_per_page
+        current_cursor_page = cursor.col // max(visible_cols_per_page, 1)
         self.col = max(current_cursor_page * visible_cols_per_page  - left_margin, 0)
