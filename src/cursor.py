@@ -17,27 +17,27 @@ class Cursor:
         self._col_hint = col
 
 
-    def up(self, buffer):
+    def up(self, buffer: object):
         if self.row > 0:
             self.row -= 1
             self._col_clamp(buffer)
-    def left(self, buffer: str):
+    def left(self, buffer: object):
         if self.col > 0:
             self.col -= 1
         elif self.row > 0:
             self.row -= 1
             self.col = len(buffer[self.row])
-    def right(self, buffer: str):
+    def right(self, buffer: object):
         if self.col < len(buffer[self.row]):
             self.col += 1
-        elif self.row < len(buffer) - 1:
+        elif self.row < buffer.bottom:
             self.row += 1
             self.col = 0
-    def down(self, buffer: str):
-        if self.row < len(buffer) - 1:
+    def down(self, buffer: object):
+        if self.row < buffer.bottom:
             self.row += 1
             self._col_clamp(buffer)
 
 
-    def _col_clamp(self, buffer: str):
+    def _col_clamp(self, buffer: object):
         self._col = min(self._col_hint, len(buffer[self.row]))

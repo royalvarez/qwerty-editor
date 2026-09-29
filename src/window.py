@@ -16,7 +16,7 @@ class Window:
         if cursor.row == self.row - 1 and self.row > 0:
             self.row -= 1
     def scroll_down(self, cursor: object, buffer: str):
-        if cursor.row == self.bottom + 1 and self.bottom < len(buffer) - 1:
+        if cursor.row == self.bottom + 1 and self.bottom < buffer.bottom:
             self.row += 1
     
     

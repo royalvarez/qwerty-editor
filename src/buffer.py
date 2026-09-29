@@ -4,6 +4,11 @@ class Buffer:
         self.lines = lines
 
 
+    @property
+    def bottom(self):
+        return len(self) - 1
+
+
     def __len__(self):
         return len(self.lines)
 
