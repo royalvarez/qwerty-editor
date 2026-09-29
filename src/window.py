@@ -1,10 +1,10 @@
 
 class Window:
-    def __init__(self, num_rows: int, num_cols: int):
+    def __init__(self, num_rows: int, num_cols: int, row: int = 0, col: int = 0):
         self.num_rows = num_rows
         self.num_cols =  num_cols
-        self.row = 0
-        self.col = 0
+        self.row = row
+        self.col = col
 
 
     @property
