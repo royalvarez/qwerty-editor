@@ -22,9 +22,9 @@ def editor(stdscr, file_path: str | None) -> None:
 
         for row, line in enumerate(buffer[window.row: window.row + window.num_rows]):
             if row == cursor.row - window.row and window.col > 0:
-                line = "<<" + line[window.col + 1:]
+                line = '←' + line[window.col + 1:]
             if len(line) > window.num_cols:
-                line = line[:window.num_cols - 1] + ">>"
+                line = line[:window.num_cols - 1] + '→'
             stdscr.addstr(row, 0, line)
 
         stdscr.move(*window.translate(cursor))
