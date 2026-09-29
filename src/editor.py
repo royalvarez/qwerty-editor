@@ -5,14 +5,16 @@ from window import Window
 
 from cursor import Cursor
 
+from buffer import Buffer
+
 
 def editor(stdscr, file_path: str | None) -> None:
     if file_path is None:
         file_path = "Untitled.py"
-        buffer = []
+        buffer = Buffer([])
     else:
             with open(file_path, 'r') as file:
-                buffer = file.readlines()
+                buffer = Buffer(file.read().splitlines())
 
     window = Window(curses.LINES - 1, curses.COLS - 1)
     cursor = Cursor(0, 0)
