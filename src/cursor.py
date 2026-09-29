@@ -5,6 +5,7 @@ class Cursor:
         self._col = col
         self._col_hint = col if col_hint is None else col_hint
 
+
     @property
     def col(self):
         return self._col
@@ -25,11 +26,11 @@ class Cursor:
             self.col -= 1
         elif self.row > 0:
             self.row -= 1
-            self.col = len(buffer[self.row]) - 1
+            self.col = len(buffer[self.row])
     def right(self, buffer: str):
         if self.col < len(buffer[self.row]):
             self.col += 1
-        elif self.row != len(buffer) - 1:
+        elif self.row < len(buffer) - 1:
             self.row += 1
             self.col = 0
     def down(self, buffer: str):
