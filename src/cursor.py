@@ -39,4 +39,4 @@ class Cursor:
 
 
     def _col_clamp(self, buffer: str):
-        self._col = min(self._col_hint, len(buffer[self.row]) - 1)
+        self._col = min(self._col_hint, len(buffer[self.row]))
