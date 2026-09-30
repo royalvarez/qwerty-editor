@@ -45,7 +45,7 @@ def editor(stdscr, file_path: str | None) -> None:
             window.scroll_up(cursor)
             window.horizontal_scroll(cursor)
         elif key == "KEY_RIGHT":
-            if buffer != []:
+            if buffer.lines != []:
                 cursor.right(buffer)
                 window.scroll_down(cursor, buffer)
                 window.horizontal_scroll(cursor)

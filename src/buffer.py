@@ -11,10 +11,13 @@ class Buffer:
 
     def insert(self, cursor: object, input_key: str):
         row, col = cursor.row, cursor.col
-        line = self.lines.pop(row)
+        if self.lines != []:
+            line = self.lines.pop(row)
 
-        new_line = line[:cursor.col] + input_key + line[cursor.col:]
-        self.lines.insert(row, new_line)
+            new_line = line[:cursor.col] + input_key + line[cursor.col:]
+            self.lines.insert(row, new_line)
+        else:
+            self.lines.append(input_key)
 
 
     def __len__(self):
