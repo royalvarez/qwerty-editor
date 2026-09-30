@@ -2,7 +2,7 @@
 
 ## Overview
 
-A minimal text editor wrapped around the Curses library.
+A minimal text editor wrapped around the Curses library. The editor can only run on the following platforms: Mac and Linux-based systems.
 
 Commands:
 - Esc to exit the program without saving
