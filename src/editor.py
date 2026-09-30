@@ -57,6 +57,9 @@ def editor(stdscr, file_path: str | None) -> None:
         else:
             if len(key) < 3 and ord(key) == 27:
                 raise SystemExit(0)
+            buffer.insert(cursor, key)
+        
+        
         stdscr.refresh()
 
     # implement saving logic
