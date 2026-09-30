@@ -7,6 +7,10 @@ from cursor import Cursor
 
 from buffer import Buffer
 
+from screen import explore_folders
+
+from os import system
+
 
 def move_left(cursor: object, buffer: object, window: object):
     cursor.left(buffer)
@@ -22,7 +26,6 @@ def move_right(cursor: object, buffer: object, window: object):
 
 def editor(stdscr, file_path: str | None) -> None:
     if file_path is None:
-        file_path = "Untitled.py"
         buffer = Buffer([])
     else:
             with open(file_path, 'r') as file:
@@ -83,4 +86,21 @@ def editor(stdscr, file_path: str | None) -> None:
         
         stdscr.refresh()
 
-    # implement saving logic
+    text = "\n".join(buffer.lines)
+
+    if file_path is not None:
+        with open(file_path, 'w') as file:
+            file.write(text)
+    else:
+        # temporarily return to shell-terminal
+        curses.def_prog_mode()
+        curses.reset_shell_mode()
+        file_path = explore_folders()
+        system("clear||cls")
+
+        filename = input("\nPlease enter the filename and extension")
+        curses.reset_prog_mode()
+        file_path = file_path + '/' + filename
+
+        with open(file_path, 'w') as file:
+            file.write(text)
