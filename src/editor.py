@@ -58,6 +58,10 @@ def editor(stdscr, file_path: str | None) -> None:
             window.scroll_down(cursor, buffer)
             window.horizontal_scroll(cursor)
 
+        elif key in ("\n", "\r"):
+            buffer.split(cursor)
+            move_right(cursor, buffer, window)
+
         else:
             if len(key) < 3 and ord(key) == 27:
                 raise SystemExit(0)

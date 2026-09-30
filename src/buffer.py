@@ -20,6 +20,21 @@ class Buffer:
             self.lines.append(input_key)
 
 
+    def split(self, cursor: object):
+        row, col = cursor.row, cursor.col
+
+        if self.lines == []:
+            self.lines.append('')
+
+        line = self.lines.pop(row)
+
+        line_split_before = line[:cursor.col]
+        line_split_after = line[cursor.col:]
+
+        self.lines.insert(row, line_split_after)
+        self.lines.insert(row, line_split_before)
+
+
     def __len__(self):
         return len(self.lines)
 
