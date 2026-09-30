@@ -61,6 +61,8 @@ def editor(stdscr, file_path: str | None) -> None:
         elif key in ("\n", "\r"):
             buffer.split(cursor)
             move_right(cursor, buffer, window)
+        elif key in ("KEY_DELETE", "\x04"):
+            buffer.delete(cursor)
 
         else:
             if len(key) < 3 and ord(key) == 27:
