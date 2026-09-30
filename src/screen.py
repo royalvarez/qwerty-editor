@@ -1,7 +1,7 @@
 
 import curses
 
-from console_explorer import browse_for_file
+from console_explorer import browse_for_file, browse_for_folder
 
 from os import system
 
@@ -36,3 +36,7 @@ def file_selector(stdscr) -> str:
 
 def explore_files(stdscr):
     return browse_for_file(existence_required=True)
+
+
+def explore_folders():
+    return browse_for_folder()
