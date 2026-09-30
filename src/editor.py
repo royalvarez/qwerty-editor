@@ -8,6 +8,12 @@ from cursor import Cursor
 from buffer import Buffer
 
 
+def move_left(cursor: object, buffer: object, window: object):
+    cursor.left(buffer)
+    window.scroll_up(cursor)
+    window.horizontal_scroll(cursor)
+
+
 def move_right(cursor: object, buffer: object, window: object):
     cursor.right(buffer)
     window.scroll_down(cursor, buffer)
@@ -47,9 +53,7 @@ def editor(stdscr, file_path: str | None) -> None:
             window.scroll_up(cursor)
             window.horizontal_scroll(cursor)
         elif key == "KEY_LEFT":
-            cursor.left(buffer)
-            window.scroll_up(cursor)
-            window.horizontal_scroll(cursor)
+            move_left(cursor, buffer, window)
         elif key == "KEY_RIGHT":
             if buffer.lines != []:
                 move_right(cursor, buffer, window)
@@ -63,6 +67,10 @@ def editor(stdscr, file_path: str | None) -> None:
             move_right(cursor, buffer, window)
         elif key in ("KEY_DELETE", "\x04", "KEY_DC"):
             buffer.delete(cursor)
+        elif key in ("KEY_BACKSPACE", "\x7f"):
+            if cursor.col > 0:
+                move_left(cursor, buffer, window)
+                buffer.delete(cursor)
 
         else:
             if len(key) < 3 and ord(key) == 27:
