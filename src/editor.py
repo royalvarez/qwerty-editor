@@ -61,7 +61,7 @@ def editor(stdscr, file_path: str | None) -> None:
         elif key in ("\n", "\r"):
             buffer.split(cursor)
             move_right(cursor, buffer, window)
-        elif key in ("KEY_DELETE", "\x04"):
+        elif key in ("KEY_DELETE", "\x04", "KEY_DC"):
             buffer.delete(cursor)
 
         else:
